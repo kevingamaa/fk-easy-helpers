@@ -1,0 +1,8 @@
+<ng-container *ngIf="(helper.isLoading && helper.loadingCtrl.options.id == loadingId) || running">
+    <mat-progress-bar mode="indeterminate" [color]="color" *ngIf="loadingType == 'progress-bar'"></mat-progress-bar>
+    <div class="spinner-loading" *ngIf="loadingType == 'spinner'" [ngClass]="styles">
+        <div class=" total-center loading absolute " >
+            <mat-spinner [color]="color"></mat-spinner>
+        </div>
+    </div>
+</ng-container>
