@@ -1,6 +1,9 @@
 {
   "name": "kf-easy-helpers",
   "version": "0.0.1",
+  "repository": {
+    "url": "git@github.com:kevingamaa/fk-easy-helpers.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
