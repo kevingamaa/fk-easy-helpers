@@ -68,7 +68,7 @@ export const showUp = trigger('showUp', [
         ),
         query(
         ':leave',
-        [style({ transform: 'scale(1)' }), animate('0.3s', style({ transform: 'scale(0)' }))],
+        [style({ transform: 'scale(1)' }), animate('0.1s', style({ transform: 'scale(0)' }))],
         { optional: true }
         ),
         query(

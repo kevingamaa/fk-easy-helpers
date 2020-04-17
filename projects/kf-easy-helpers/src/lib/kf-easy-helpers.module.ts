@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FilterComponent } from './filter/filter.component';
 import { HelperService } from './services/helper.service';
 import { ModelRest } from './services/model-rest.service';
-import { ControllerComponent } from './services/Controller.component';
+import { ControllerComponent } from './controller/controller.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KF_ENV } from './kf-env-config';
 import { LoadingComponent } from './loading/loading.component';

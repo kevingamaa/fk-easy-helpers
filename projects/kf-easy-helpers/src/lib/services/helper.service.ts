@@ -1,6 +1,6 @@
 import { Injectable, Inject, Optional } from '@angular/core';
 import {  BehaviorSubject } from 'rxjs';
-import { BreakpointState, BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Title } from '@angular/platform-browser';
 import * as moment_ from 'moment';
 import { KfEnvType } from '../kf-env-type';
@@ -26,7 +26,7 @@ export class HelperService {
     ) {
        
         this.breakpointObserver.observe(['(min-width: 767px)'])
-            .subscribe((state: BreakpointState) => {
+            .subscribe((state: any) => {
                 if (state.matches) {
                     this.isMobile = false;
                 } else {

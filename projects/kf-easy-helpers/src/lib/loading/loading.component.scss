@@ -1,7 +1,16 @@
 .spinner-loading {
     min-height: 200px;
-
+    cursor: progress;
     &.small {
         min-height: auto;
+    }
+
+
+    &.full-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
     }
 }

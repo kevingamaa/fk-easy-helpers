@@ -15,15 +15,17 @@ const moment: any = moment_;
 export class FilterComponent implements OnInit {
 
     @Input() public form: FormGroup = new FormGroup({});
-    @Input() public timer = 2000; // 1s
+    @Input() public timer = 3000; // 1s
     @Input() public triggerType: 'button' | 'timer' = 'button';
 
     // conditions
     @Input() public where: string[] = [];
+    @Input() public operator: any = {};
     @Input() public rename: any = {};
     @Input() public ilike: any = {};
     @Input() public like: any = {};
-    @Input() public range: any = {};
+    @Input() public range: any[] = [];
+    @Input() public number: any[] = [];
 
 
     @Input() public loading: boolean;
@@ -68,31 +70,37 @@ export class FilterComponent implements OnInit {
 
     public prepareWhere(form: any) {
         form.where = [];
-        for (const i in form) {
-            if ( this.where.find((val: string) => val.includes(i)) ) {
-                let filter: any  = {0: '', 1: '=', 2: ''};
+        for (let i in form) {
+            if ( this.where.indexOf(i) > -1 && form[i]  ) {
+                let filter: any  = {name: i, operator: '=', value: form[i]};
                 if (this.rename[i]) {
-                    filter[0] = this.rename[i];
+                    filter.name = this.rename[i];
+                }
+
+                if(this.operator[i]) {
+                    filter.operator = this.operator[i];
+                }
+
+                if(this.number.indexOf(i) > -1) {
+                    filter.value =  String(filter.value).replace(/\D/gim, '');
                 }
 
                 if(this.ilike[i]) {
                     let ilike = String(this.ilike[i]);
-                    filter[0] = i;
-                    filter[1] = 'ilike';
-                    filter[2] = `${ilike.length == 1?'%': ''}${form[i]}${ilike.length == 2?'%': ''}`;
+                    filter.operator = 'ilike';
+                    filter.value = `${ilike.length >=  1?'%': ''}${filter.value}${ilike.length >= 2?'%': ''}`;
                 }
                 if(this.like[i]) {
-                    let like = String(this.ilike[i]);
-                    filter[0] = i;
-                    filter[1] = 'ilike';
-                    filter[2] = `${like.length == 1?'%': ''}${form[i]}${like.length == 2?'%': ''}`;
+                    let like = String(this.like[i]);
+                    filter.operator = 'like';
+                    filter.value = `${like.length >= 1?'%': ''}${filter.value}${like.length >=  2?'%': ''}`;
                 }
-
-                if(this.range[i]) {
-                    filter.where.push([i, '>=', this.helper.date(form[i].begin).format('Y-M-DD HH:mm:ss') ]);
-                    filter.where.push([i, '<=', this.helper.date(form[i].end).format('Y-M-DD HH:mm:ss') ]);
+                
+                if(this.range.indexOf(i) > -1) {
+                    form.where.push([filter.name, '>=', this.helper.date(form[i].begin).format('Y-MM-DD HH:mm:ss') ]);
+                    form.where.push([filter.name, '<=', this.helper.date(form[i].end).format('Y-MM-DD HH:mm:ss') ]);
                 } else {
-                    form.where.push([filter[0], filter[1], form[i]]);
+                    form.where.push([filter.name, filter.operator, filter.value]);
                 }
             }
         }

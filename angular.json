@@ -10,34 +10,40 @@
             "prefix": "kf",
             "schematics": {
                 "@schematics/angular:component": {
-                    "styleext": "scss",
-                    "spec": false
+                    "style": "scss",
+                    "skipTests": true
                 },
                 "@schematics/angular:class": {
-                    "spec": false
+                    "skipTests": true
                 },
                 "@schematics/angular:directive": {
-                    "spec": false
+                    "skipTests": true
                 },
                 "@schematics/angular:guard": {
-                    "spec": false
+                    "skipTests": true
                 },
                 "@schematics/angular:module": {
-                    "spec": false
+                    "skipTests": true
                 },
                 "@schematics/angular:pipe": {
-                    "spec": false
+                    "skipTests": true
                 },
                 "@schematics/angular:service": {
-                    "spec": false
+                    "skipTests": true
                 }
             },
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-ng-packagr:build",
+                
                     "options": {
                         "tsConfig": "projects/kf-easy-helpers/tsconfig.lib.json",
                         "project": "projects/kf-easy-helpers/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/kf-easy-helpers/tsconfig.lib.prod.json"
+                        }
                     }
                 },
                 "test": {
@@ -63,5 +69,8 @@
             }
         }
     },
-    "defaultProject": "kf-easy-helpers"
+    "defaultProject": "kf-easy-helpers",
+    "cli": {
+        "analytics": "8c15a74a-b51f-4f42-8ec7-826936bd0d7b"
+    }
 }

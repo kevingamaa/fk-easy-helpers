@@ -24,7 +24,7 @@ export class ModelRest {
 
     public errorToastr: any;
 
-    protected storageUrl: string;
+    public storageUrl: string;
     constructor(
         protected http: HttpClient,
         public helper: HelperService

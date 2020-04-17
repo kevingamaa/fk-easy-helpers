@@ -1,6 +1,6 @@
 import { MatTableDataSource } from '@angular/material/table';
 import { Component } from '@angular/core';
-import { HelperService } from './helper.service';
+import { HelperService } from '../services/helper.service';
 
 @Component({
     selector: 'kf-controller',
