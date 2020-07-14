@@ -7,6 +7,11 @@ export * from './lib/kf-easy-helpers.module';
 export * from './lib/controller/controller.component'
 export * from './lib/services/helper.service'
 export * from './lib/services/model-rest.service'
+export * from './lib/services/request.service'
+export * from './lib/kf-acl/kf-acl.service';
+export * from './lib/kf-acl/kf-acl-guard.service';
+
+
 export * from './lib/kf-env-config';
 export * from './lib/kf-env-type';
 

@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import * as moment_ from 'moment';
 import { KfEnvType } from '../kf-env-type';
 import { KF_ENV } from '../kf-env-config';
+import { Moment } from 'moment';
 export const moment: any = moment_;
 
 @Injectable({
@@ -77,7 +78,7 @@ export class HelperService {
         toast.present();
     }
 
-    date(date: any = new Date()) {
+    public date(date: any = new Date()): Moment {
         return moment(date)
         .parseZone()
         .locale(window.navigator.language);

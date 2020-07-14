@@ -22,6 +22,7 @@
     font-weight: 500;
     letter-spacing: 1.5px;
     font-size: 12.4px;
+    line-height: 16px;
     .w1-label-text {
         position: relative;
         z-index: 5;
@@ -33,6 +34,7 @@
 
     &.square,  &.square::before{
         border-radius: 5px;
+        
     }
 
     &.pulse {

@@ -11,17 +11,21 @@ import { KF_ENV } from './kf-env-config';
 import { LoadingComponent } from './loading/loading.component';
 import { MaterialModule } from './material/material.module';
 import { KfEnvType } from './kf-env-type';
+import { KfAclComponent } from './kf-acl/kf-acl.component';
 
 
-
+const exports = [
+    KfEasyHelpersComponent, 
+    StatusComponent, 
+    FilterComponent, 
+    ControllerComponent, 
+    LoadingComponent,
+    KfAclComponent
+]
 
 @NgModule({
     declarations: [
-        KfEasyHelpersComponent, 
-        StatusComponent, 
-        FilterComponent, 
-        ControllerComponent, 
-        LoadingComponent
+        ...exports
     ],
     imports: [
         CommonModule,
@@ -30,11 +34,7 @@ import { KfEnvType } from './kf-env-type';
         ReactiveFormsModule
     ],
     exports: [
-        KfEasyHelpersComponent,
-        StatusComponent,
-        FilterComponent,
-        ControllerComponent,
-        LoadingComponent
+        ...exports
     ]
 })
 export class KfEasyHelpersModule {

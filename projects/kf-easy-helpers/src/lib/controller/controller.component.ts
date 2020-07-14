@@ -1,13 +1,14 @@
 import { MatTableDataSource } from '@angular/material/table';
 import { Component } from '@angular/core';
 import { HelperService } from '../services/helper.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'kf-controller',
     template: '',
   })
 export class ControllerComponent {
-    public element:any;
+    public element: BehaviorSubject<any> | any = new BehaviorSubject<any>([]);
     public displayedColumns: string[];
     public dataSource = new MatTableDataSource<any>([]);
     public filters: any = {};
