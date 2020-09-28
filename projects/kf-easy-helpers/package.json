@@ -1,6 +1,6 @@
 {
   "name": "kf-easy-helpers",
-  "version": "0.8.7",
+  "version": "1.0.3",
   "peerDependencies": {
     "@angular/common": ">8.2.14",
     "@angular/core": ">8.2.14"

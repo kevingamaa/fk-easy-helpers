@@ -8,6 +8,8 @@ import { KF_ENV } from '../kf-env-config';
 import { Moment } from 'moment';
 export const moment: any = moment_;
 
+
+export type loading = {id?: string};
 @Injectable({
     providedIn: 'root'
 })
@@ -17,7 +19,6 @@ export class HelperService {
     public loadingCtrl: any = {
         running: new BehaviorSubject(false)
     };
-
     public toastOptions: 'ionic' | 'ngx-toastr';
     private toastCtrl: any;
     constructor(
@@ -44,8 +45,8 @@ export class HelperService {
     get isLoading() {
         return this.loadingCtrl.running.getValue();
     }
-    public async loading(opts: any = {}) {
-        this.loadingCtrl.options = opts;
+    public async loading(newLoading: loading = {}) {
+        this.loadingCtrl.options = newLoading;
         return await setTimeout(async () => this.loadingCtrl.running.next(true), 100);
     }
 

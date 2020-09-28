@@ -1,5 +1,4 @@
 .spinner-loading {
-    min-height: 200px;
     cursor: progress;
     &.small {
         min-height: auto;
@@ -12,5 +11,16 @@
         top: 0;
         width: 100%;
         height: 100%;
+        z-index: 10;
+    }
+
+    &.center-loading {
+        display: flex;
+        justify-content: center;
+    }
+
+    &.align-center-loading {
+        align-content: center;
+        align-items: center;
     }
 }

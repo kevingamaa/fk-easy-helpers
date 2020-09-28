@@ -50,6 +50,9 @@ export class ModelRest {
     }
 
 
+    public getHttp(): HttpClient {
+        return this.http;
+    }
 
     public get(parans?: any): Observable<any> {
 
@@ -101,7 +104,8 @@ export class ModelRest {
                 }
             }
         }
-        urlParans = urlParans.replace(/[%]/g, '%25');
+
+        urlParans = urlParans.replace(/[%]/g, '%25').slice(0, -1);
         // urlParans = urlParans.replace(/["]/g, '');
         return urlParans;
     }
