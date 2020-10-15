@@ -5,5 +5,6 @@ export type KfEnvType = {
     mainPath?: string,
     storage?: string,
     alertCtrl?: { type: 'ionic' | 'material', class: any },
-    toastCtrl?: { type: 'ionic' | 'ngx-toastr' | 'material', class: any }
+    toastCtrl?: { type: 'ionic' | 'ngx-toastr' | 'material', class: any },
+    observerType: 'body' | 'response'
 };

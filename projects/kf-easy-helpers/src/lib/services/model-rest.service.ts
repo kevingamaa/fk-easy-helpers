@@ -25,6 +25,7 @@ export class ModelRest {
     public errorToastr: any;
 
     public storageUrl: string;
+    public observerRequest: any;
     constructor(
         protected http: HttpClient,
         public helper: HelperService
@@ -41,6 +42,7 @@ export class ModelRest {
         this.main_path = mainPath;
         this.host = helper.env.host;
         this.storageUrl = helper.env.storage;
+        this.observerRequest = helper.env.observerType?helper.env.observerType: 'body';
     }
     public get url() {
         const url = this.host + this.main_path + this.apiUrl + (this.custons.addUrl ? '/' + this.custons.addUrl : '');
@@ -56,25 +58,25 @@ export class ModelRest {
 
     public get(parans?: any): Observable<any> {
 
-        return this.http.get<any>(`${this.url}${this.parans(parans)}`);
+        return this.http.get<any>(`${this.url}${this.parans(parans)}`, { observe: this.observerRequest });
 
     }
 
     public post(data: any): Observable<any> {
-        return this.http.post<any>(`${this.url}`, data);
+        return this.http.post<any>(`${this.url}`, data, { observe: this.observerRequest });
     }
 
     public find(id: number) {
-        return this.http.get<any>(`${this.url}/show?id=${id}`);
+        return this.http.get<any>(`${this.url}/show?id=${id}`, { observe: this.observerRequest });
     }
 
     public create(data: any): Observable<any> {
-        return this.http.post<any>(`${this.url}/create`, data);
+        return this.http.post<any>(`${this.url}/create`, data, { observe: this.observerRequest });
     }
 
 
 
-    public options(options) {
+    public options(options: {addUrl?: string, clear?: boolean}) {
         this.custons = options;
         if (options.clear) {
             this.custons = {};
@@ -86,11 +88,11 @@ export class ModelRest {
 
 
     public update(id: number, data: any): Observable<any> {
-        return this.http.put<any>(`${this.url}/update?id=${id}`, data);
+        return this.http.put<any>(`${this.url}/update?id=${id}`, data, { observe: this.observerRequest });
     }
 
     public delete(id: number): Observable<any> {
-        return this.http.delete<any>(`${this.url}/delete?id=${id}`);
+        return this.http.delete<any>(`${this.url}/delete?id=${id}`, { observe: this.observerRequest });
     }
 
     public parans(parans) {
