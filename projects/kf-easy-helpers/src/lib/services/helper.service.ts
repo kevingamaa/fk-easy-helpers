@@ -21,13 +21,21 @@ export class HelperService {
     };
     public toastOptions: 'ionic' | 'ngx-toastr';
     private toastCtrl: any;
+    
     constructor(
         public breakpointObserver: BreakpointObserver,
         public title: Title,
         @Optional() @Inject(KF_ENV) public env: KfEnvType
     ) {
-       
-        this.breakpointObserver.observe(['(min-width: 767px)'])
+        
+        let breakpoint ='760px';
+
+        if(this.env.breakpoints) {
+            if(this.env.breakpoints.mobile) {
+                breakpoint = this.env.breakpoints.mobile;
+            }
+        }
+        this.breakpointObserver.observe([`(min-width: ${breakpoint})`])
             .subscribe((state: any) => {
                 if (state.matches) {
                     this.isMobile = false;
