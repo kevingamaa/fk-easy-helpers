@@ -107,9 +107,14 @@ export class ModelRest {
             }
         }
 
-        urlParans = urlParans.replace(/[%]/g, '%25').slice(0, -1);
+        urlParans = urlParans.replace(/[%]/g, '%25');
+        urlParans = urlParans.replace(/[+]/g, '%2B');
+        urlParans = urlParans.replace(/[*]/g, '%2A');
+        urlParans = urlParans.replace(/[#]/g, '%23');
+        
+        
         // urlParans = urlParans.replace(/["]/g, '');
-        return urlParans;
+        return urlParans.slice(0, -1);
     }
 
 
