@@ -1,5 +1,5 @@
 import { Observable, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HelperService } from './helper.service';
 
@@ -146,7 +146,7 @@ export class ModelRest {
             // client-side error
             errorMessage = `Error: ${response.error.message}`;
         } else {
-            if (response.error.errors) {
+            if (response.error) {
                 if (response.error.errors) {
                     this.handleLoop(response.error.errors);
                     errorMessage = response.error.errors;
