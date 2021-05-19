@@ -46,7 +46,6 @@ import {getPtPaginatorIntl } from './paginatorConfig';
         MatCheckboxModule,
         MatProgressSpinnerModule,
         MatProgressBarModule,
-        
     ],
     providers: [
         { provide: MatPaginatorIntl, useValue: getPtPaginatorIntl() }
