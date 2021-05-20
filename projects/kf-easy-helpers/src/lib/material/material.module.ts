@@ -24,7 +24,26 @@ import {getPtPaginatorIntl } from './paginatorConfig';
 @NgModule({
     declarations: [],
     imports: [
-        CommonModule
+        CommonModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSlideToggleModule,
+        MatSelectModule,
+        MatTabsModule,
+        MatCardModule,
+        MatIconModule,
+        MatAutocompleteModule,
+        MatButtonModule,
+        MatListModule,
+        MatRadioModule,
+        MatTooltipModule,
+        MatChipsModule,
+        MatCheckboxModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
     ],
     exports: [
         MatTableModule,
