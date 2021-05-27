@@ -20,7 +20,6 @@ export class HelperService {
         running: new BehaviorSubject(false)
     };
     public toastOptions: 'ionic' | 'ngx-toastr';
-    private toastCtrl: any;
     
     constructor(
         public breakpointObserver: BreakpointObserver,
@@ -43,11 +42,6 @@ export class HelperService {
                     this.isMobile = true;
                 }
             });
-
-            if(this.env.toastCtrl) {
-                let toastClass = this.env.toastCtrl.class;
-                this.toastCtrl = new toastClass();
-            }
     }
 
     get isLoading() {
@@ -62,82 +56,10 @@ export class HelperService {
         return await setTimeout(async () => this.loadingCtrl.running.next(false), 100);
     }
 
-    async toast(message = { title: 'ok', text: '' }, options: any = 'success') {
-        const optionsToSend: any = typeof options === 'string' ? {} : options;
-        if (!optionsToSend.buttons) {
-            optionsToSend.buttons = [
-                {
-                    text: 'Ok',
-                    role: 'cancel'
-                }
-            ];
-        }
-        if (typeof options === 'string' || !optionsToSend.color) {
-            optionsToSend.color = options ? options : 'primary';
-            // console.log( optionsToSend.color);
-        }
-
-        if (!optionsToSend.position) {
-            optionsToSend.position = 'top';
-        }
-        optionsToSend.header = message.title;
-        optionsToSend.message = message.text;
-        optionsToSend.duration = 5000;
-        const toast = await this.toastCtrl.create(optionsToSend);
-        toast.present();
-    }
-
     public date(date: any = new Date()): Moment {
         return moment(date)
         .parseZone()
         .locale(window.navigator.language);
-    }
-
-    public encript(dados) {
-        let mensx = '';
-        let l;
-        let i;
-        let j = 0;
-        const ch = 'assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm';
-        for (i = 0; i < dados.length; i++) {
-            j++;
-            l = (this.asc(dados.substr(i, 1)) + (this.asc(ch.substr(j, 1))));
-            if (j === 50) {
-                j = 1;
-            }
-            if (l > 255) {
-                l -= 256;
-            }
-            mensx += (this.chr(l));
-        }
-        return mensx;
-    }
-
-    public decript(dados) {
-        let  mensx = '';
-        let  l;
-        let  i;
-        let j = 0;
-        const ch = 'assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm';
-        for (i = 0; i < dados.length; i++) {
-            j++;
-            l = (this.asc(dados.substr(i, 1)) - (this.asc(ch.substr(j, 1))));
-            if (j === 50) {
-                j = 1;
-            }
-            if (l < 0) {
-                l += 256;
-            }
-            mensx += (this.chr(l));
-        }
-        return mensx;
-    }
-    public asc(str) {
-        return str.charCodeAt(0);
-    }
-
-    public chr(asciiNum) {
-        return String.fromCharCode(asciiNum);
     }
 }
 

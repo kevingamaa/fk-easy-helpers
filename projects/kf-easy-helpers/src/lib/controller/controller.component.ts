@@ -16,10 +16,6 @@ export class ControllerComponent {
     public alertCtrl: any;
 
     constructor(public helper: HelperService) {
-        if(helper.env.alertCtrl) {
-            let AlertCtrl = helper.env.alertCtrl.class;
-            this.alertCtrl = new  AlertCtrl;
-        }
     }
     public applyFilter(filterValue: string) {
 
