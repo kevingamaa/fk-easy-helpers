@@ -65,7 +65,6 @@
       }
     }
   },
-  "defaultProject": "kf-easy-helpers",
   "cli": {
     "analytics": "8c15a74a-b51f-4f42-8ec7-826936bd0d7b"
   }

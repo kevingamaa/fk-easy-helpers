@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter,  ViewChild  } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { distinct, debounceTime } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { showUp } from '../app-animation';
@@ -14,7 +14,7 @@ const moment: any = moment_;
 })
 export class FilterComponent implements OnInit {
 
-    @Input() public form: FormGroup = new FormGroup({});
+    @Input() public form: UntypedFormGroup = new UntypedFormGroup({});
     @Input() public timer = 3000; // 1s
     @Input() public triggerType: 'button' | 'timer' = 'button';
 
