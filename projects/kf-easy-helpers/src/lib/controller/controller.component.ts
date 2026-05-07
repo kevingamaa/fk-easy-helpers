@@ -1,4 +1,4 @@
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { Component } from '@angular/core';
 import { HelperService } from '../services/helper.service';
 import { BehaviorSubject } from 'rxjs';
