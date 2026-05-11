@@ -1,13 +1,15 @@
-import { Inject, Injectable, Optional } from "@angular/core";
 import { BreakpointObserver } from "@angular/cdk/layout";
+import { Inject, Injectable, Optional } from "@angular/core";
 import { Title } from "@angular/platform-browser";
+import * as momentNamespace from "moment";
+import { Moment } from "moment";
 import { BehaviorSubject } from "rxjs";
-import momentDefault, { Moment } from "moment";
 
 import { KF_ENV } from "../kf-env-config";
 import { KfEnvType } from "../kf-env-type";
 
-export const moment = momentDefault;
+export const moment =
+  momentNamespace as unknown as typeof momentNamespace.default;
 
 export type Loading = { id?: string };
 
@@ -17,9 +19,11 @@ export type Loading = { id?: string };
 export class HelperService {
   public cssClasses: any = "";
   public isMobile = false;
+
   public loadingCtrl: any = {
     running: new BehaviorSubject<boolean>(false),
   };
+
   public toastOptions!: "ionic" | "ngx-toastr";
 
   constructor(
