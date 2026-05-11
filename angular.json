@@ -53,13 +53,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/kf-easy-helpers/tsconfig.lib.json",
-              "projects/kf-easy-helpers/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/kf-easy-helpers/src/**/*.ts",
+              "projects/kf-easy-helpers/src/**/*.html"
+            ]
           }
         }
       }
