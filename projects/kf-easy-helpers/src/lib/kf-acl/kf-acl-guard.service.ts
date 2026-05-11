@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { KfAclService } from './kf-acl.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class KfAclGuardService implements CanActivate {
+export class KfAclGuardService  {
 
     constructor(
         private acl: KfAclService,

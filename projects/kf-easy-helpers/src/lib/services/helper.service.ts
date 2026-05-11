@@ -1,79 +1,79 @@
-import { Injectable, Inject, Optional } from '@angular/core';
-import {  BehaviorSubject } from 'rxjs';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { Title } from '@angular/platform-browser';
-import * as moment_ from 'moment';
-import { KfEnvType } from '../kf-env-type';
-import { KF_ENV } from '../kf-env-config';
-import { Moment } from 'moment';
-export const moment: any = moment_;
+import { BreakpointObserver } from "@angular/cdk/layout";
+import { Inject, Injectable, Optional } from "@angular/core";
+import { Title } from "@angular/platform-browser";
+import * as momentNamespace from "moment";
+import { Moment } from "moment";
+import { BehaviorSubject } from "rxjs";
 
+import { KF_ENV } from "../kf-env-config";
+import { KfEnvType } from "../kf-env-type";
 
-export type loading = {id?: string};
+export const moment =
+  momentNamespace as unknown as typeof momentNamespace.default;
+
+export type Loading = { id?: string };
+
 @Injectable({
-    providedIn: 'root'
+  providedIn: "root",
 })
 export class HelperService {
-    public cssClasses: any = '';
-    public isMobile: boolean;
-    public loadingCtrl: any = {
-        running: new BehaviorSubject(false)
-    };
-    public toastOptions: 'ionic' | 'ngx-toastr';
-    
-    constructor(
-        public breakpointObserver: BreakpointObserver,
-        public title: Title,
-        @Optional() @Inject(KF_ENV) public env: KfEnvType
-    ) {
-        
-        let breakpoint ='760px';
+  public cssClasses: any = "";
+  public isMobile = false;
 
-        if(this.env.breakpoints) {
-            if(this.env.breakpoints.mobile) {
-                breakpoint = this.env.breakpoints.mobile;
-            }
-        }
-        this.breakpointObserver.observe([`(min-width: ${breakpoint})`])
-            .subscribe((state: any) => {
-                if (state.matches) {
-                    this.isMobile = false;
-                } else {
-                    this.isMobile = true;
-                }
-            });
+  public loadingCtrl: any = {
+    running: new BehaviorSubject<boolean>(false),
+  };
+
+  public toastOptions!: "ionic" | "ngx-toastr";
+
+  constructor(
+    public breakpointObserver: BreakpointObserver,
+    public title: Title,
+    @Optional() @Inject(KF_ENV) public env: KfEnvType,
+  ) {
+    let breakpoint = "760px";
+
+    if (this.env?.breakpoints?.mobile) {
+      breakpoint = this.env.breakpoints.mobile;
     }
 
-    get isLoading() {
-        return this.loadingCtrl.running.getValue();
-    }
-    public async loading(newLoading: loading = {}) {
-        this.loadingCtrl.options = newLoading;
-        return await setTimeout(async () => this.loadingCtrl.running.next(true), 100);
-    }
+    this.breakpointObserver
+      .observe([`(min-width: ${breakpoint})`])
+      .subscribe((state: any) => {
+        this.isMobile = !state.matches;
+      });
+  }
 
-    public async stopLoading() {
-        return await setTimeout(async () => this.loadingCtrl.running.next(false), 100);
-    }
+  get isLoading(): boolean {
+    return this.loadingCtrl.running.getValue();
+  }
 
-    public date(date: any = new Date()): Moment {
-        return moment(date)
-        .parseZone()
-        .locale(window.navigator.language);
-    }
+  public async loading(newLoading: Loading = {}) {
+    this.loadingCtrl.options = newLoading;
+    return setTimeout(() => this.loadingCtrl.running.next(true), 100);
+  }
+
+  public async stopLoading() {
+    return setTimeout(() => this.loadingCtrl.running.next(false), 100);
+  }
+
+  public date(date: any = new Date()): Moment {
+    return moment(date).parseZone().locale(window.navigator.language);
+  }
 }
 
-
-
-export function strToCapitalize(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+export function strToCapitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+export function makeFormData(obj: any): FormData {
+  const form = new FormData();
 
-export function makeFormData(obj) {
-    let form = new FormData();
-    for(let i in obj) {
-        form.append(i, obj[i]);
+  for (const i in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, i)) {
+      form.append(i, obj[i]);
     }
-    return form;
+  }
+
+  return form;
 }
