@@ -1,15 +1,11 @@
 import { BreakpointObserver } from "@angular/cdk/layout";
 import { Inject, Injectable, Optional } from "@angular/core";
 import { Title } from "@angular/platform-browser";
-import * as momentNamespace from "moment";
-import { Moment } from "moment";
+import moment, { Moment } from "moment";
 import { BehaviorSubject } from "rxjs";
 
 import { KF_ENV } from "../kf-env-config";
 import { KfEnvType } from "../kf-env-type";
-
-export const moment =
-  momentNamespace as unknown as typeof momentNamespace.default;
 
 export type Loading = { id?: string };
 
