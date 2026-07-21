@@ -31,13 +31,13 @@
     "zone.js": "^0.13.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^16.2.16",
+    "@angular-devkit/build-angular": "^21.2.19",
     "@angular-eslint/builder": "^16.3.1",
     "@angular-eslint/eslint-plugin": "^16.3.1",
     "@angular-eslint/eslint-plugin-template": "^16.3.1",
-    "@angular-eslint/schematics": "16.3.1",
+    "@angular-eslint/schematics": "22.1.0",
     "@angular-eslint/template-parser": "^16.3.1",
-    "@angular/cli": "^16.2.16",
+    "@angular/cli": "^22.0.7",
     "@angular/compiler-cli": "^16.2.12",
     "@angular/language-service": "^16.2.12",
     "@types/jasmine": "^4.3.6",
@@ -51,7 +51,7 @@
     "karma-coverage": "^2.2.1",
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
-    "ng-packagr": "^16.2.3",
+    "ng-packagr": "^22.0.1",
     "ts-node": "^10.9.2",
     "typescript": "~5.1.6"
   }
